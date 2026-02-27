@@ -27,8 +27,9 @@ export default function AuthPage() {
     setLoading(true);
 
     if (isSignUp) {
-      const { error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await supabase.auth.signUp({ email, password });
       if (error) alert(error.message);
+      else if (data.session) router.push('/dashboard');
       else alert('Success! Check your email for a confirmation link.');
     } else {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
