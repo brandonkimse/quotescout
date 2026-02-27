@@ -174,7 +174,8 @@ export default function Dashboard() {
 
   // ── derived ───────────────────────────────────────────────────────────────
 
-  const canGenerate = profile?.is_subscribed || (profile?.usage_count ?? 0) < 1;
+  const usageCount = profile?.usage_count ?? 0;
+  const canGenerate = profile?.is_subscribed || usageCount < 1;
 
   // ── render ────────────────────────────────────────────────────────────────
 
@@ -227,11 +228,11 @@ export default function Dashboard() {
 
         {!profile?.is_subscribed && (
           <div className={`px-4 py-3 rounded-lg text-sm border ${
-            profile?.usage_count === 0
+            usageCount === 0
               ? 'bg-blue-50 border-blue-200 text-blue-700'
               : 'bg-amber-50 border-amber-200 text-amber-700'
           }`}>
-            {profile?.usage_count === 0
+            {usageCount === 0
               ? '✨ You have 1 free generation — try QuoteScout now!'
               : '🔒 Free generation used. Upgrade to Pro for unlimited access.'}
           </div>
