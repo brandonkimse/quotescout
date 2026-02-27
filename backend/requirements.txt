@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-dotenv
+supabase
+stripe
+openai
+reportlab
